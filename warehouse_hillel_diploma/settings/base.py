@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "warehose.apps.WarehouseConfig",
+    "warehouse.apps.WarehouseConfig",
     "rest_framework",
     "corsheaders",
     "rest_framework_simplejwt",
@@ -85,11 +85,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "bookstoreHW.middleware.RequestMiddleware",
-    "silk.middleware.SilkyMiddleware",
 ]
 
-ROOT_URLCONF = "bookstoreHW.urls"
+ROOT_URLCONF = "HillelWarehouseDiploma.urls"
 
 TEMPLATES = [
     {
@@ -108,8 +106,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "bookstoreHW.wsgi.application"
-ASGI_APPLICATION = "bookstoreHW.asgi.application"
+WSGI_APPLICATION = "HillelWarehouseDiploma.wsgi.application"
+ASGI_APPLICATION = "HillelWarehouseDiploma.asgi.application"
 
 
 # ---------------------------------------------------------------------------
