@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "user_management.apps.UserManagementConfig",
     "warehouse.apps.WarehouseConfig",
     "rest_framework",
     "corsheaders",
@@ -87,7 +88,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "HillelWarehouseDiploma.urls"
+ROOT_URLCONF = "warehouse_hillel_diploma.urls"
 
 TEMPLATES = [
     {
@@ -106,8 +107,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "HillelWarehouseDiploma.wsgi.application"
-ASGI_APPLICATION = "HillelWarehouseDiploma.asgi.application"
+WSGI_APPLICATION = "warehouse_hillel_diploma.wsgi.application"
+ASGI_APPLICATION = "warehouse_hillel_diploma.asgi.application"
 
 
 # ---------------------------------------------------------------------------
