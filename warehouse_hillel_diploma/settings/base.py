@@ -63,9 +63,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "shop.apps.ShopConfig",
-    "order.apps.OrderConfig",
-    "user_management.apps.UserManagementConfig",
+    "warehose.apps.WarehouseConfig",
     "rest_framework",
     "corsheaders",
     "rest_framework_simplejwt",
@@ -290,8 +288,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Bookstore API",
-    "DESCRIPTION": "REST API для книгарні: книги, категорії, автори, видавці, замовлення",
+    "TITLE": "Warehouse API",
+    "DESCRIPTION": "REST API для книгарні: книги, замовлення",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
 }
