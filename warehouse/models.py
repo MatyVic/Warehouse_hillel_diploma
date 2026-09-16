@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 
 
@@ -30,43 +29,30 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
-    @property
-    def total_quantity(self):
-        return self.cells.aggregate(total=Sum("quantity"))["total"] or 0
 
-
-class Cell(models.Model):
+class Stock(models.Model):
     warehouse = models.ForeignKey(
         Warehouse,
-        on_delete=models.PROTECT,
-        related_name="cells",
+        on_delete=models.CASCADE,
+        related_name="stock",
         verbose_name=_("Warehouse"),
     )
     book = models.ForeignKey(
         Book,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="cells",
+        on_delete=models.CASCADE,
+        related_name="stock",
         verbose_name=_("Book"),
-    )
-    code = models.CharField(max_length=20, verbose_name=_("Code"))
-    aisle = models.CharField(max_length=10, blank=True, verbose_name=_("Aisle"))
-    shelf = models.CharField(max_length=10, blank=True, verbose_name=_("Shelf"))
-    bin = models.CharField(max_length=10, blank=True, verbose_name=_("Bin"))
-    capacity = models.PositiveIntegerField(
-        null=True, blank=True, verbose_name=_("Capacity")
     )
     quantity = models.PositiveIntegerField(default=0, verbose_name=_("Quantity"))
 
     class Meta:
-        verbose_name = _("Cell")
-        verbose_name_plural = _("Cells")
+        verbose_name = _("Stock item")
+        verbose_name_plural = _("Stock items")
         constraints = [
             models.UniqueConstraint(
-                fields=["warehouse", "code"], name="unique_cell_code_per_warehouse"
+                fields=["warehouse", "book"], name="unique_book_per_warehouse"
             )
         ]
 
     def __str__(self):
-        return f"{self.warehouse.name} / {self.code}"
+        return f"{self.warehouse.name} — {self.book.title} ({self.quantity})"

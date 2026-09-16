@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Warehouses" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">{% trans "Warehouses" %}</h1>
+
+    {% if warehouses %}
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Address" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for warehouse in warehouses %}
+            <tr>
+                <td>{{ warehouse.name }}</td>
+                <td>{{ warehouse.address|default:"—" }}</td>
+                <td>
+                    {% if warehouse.is_active %}
+                        <span class="badge bg-success">{% trans "Active" %}</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{% trans "Inactive" %}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'warehouse:stock' warehouse.pk %}" class="btn btn-sm btn-primary">
+                        {% trans "View stock" %}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-muted">{% trans "No warehouses found." %}</p>
+    {% endif %}
+</div>
+{% endblock %}
