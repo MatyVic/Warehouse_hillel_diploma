@@ -41,7 +41,7 @@ services:
     depends_on:
       - db
       - redis_cache
-    command: ["celery", "-A", "bookstoreHW", "worker", "--loglevel=info"]
+    command: ["celery", "-A", "warehouse_hillel_diploma", "worker", "--loglevel=info"]
 
   celery-beat:
     build: .
@@ -50,4 +50,4 @@ services:
     depends_on:
       - db
       - redis_cache
-    command: ["celery", "-A", "bookstoreHW", "beat", "--loglevel=info", "--scheduler=django_celery_beat.schedulers:DatabaseScheduler"]
+    command: ["celery", "-A", "warehouse_hillel_diploma", "beat", "--loglevel=info", "--scheduler=django_celery_beat.schedulers:DatabaseScheduler"]
