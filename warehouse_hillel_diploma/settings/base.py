@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user_management.apps.UserManagementConfig",
     "warehouse.apps.WarehouseConfig",
+    "warehouse_api.apps.WarehouseApiConfig",
     "rest_framework",
     "corsheaders",
     "rest_framework_simplejwt",
