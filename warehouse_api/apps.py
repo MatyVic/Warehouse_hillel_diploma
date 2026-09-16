@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class WarehoseApiConfig(AppConfig):
+class WarehouseApiConfig(AppConfig):
     name = "warehouse_api"
