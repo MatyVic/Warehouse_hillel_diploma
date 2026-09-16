@@ -20,7 +20,6 @@ db.old____sqlite3
 
 # Env / secrets
 .env
-.env_local
 .env_docker
 
 # Testing / coverage
