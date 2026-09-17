@@ -46,12 +46,6 @@ class TestLoginForm:
 
 @pytest.mark.django_db
 class TestAuthViews:
-    """
-    NOTE: user_register / user_login / user_logout currently redirect to
-    "shop:all_books", a namespace that does not exist in this project.
-    These tests currently FAIL and document the known bug — see chat notes.
-    Fix: change all three redirects to "warehouse:list".
-    """
 
     def test_register_page_loads(self, client):
         response = client.get(reverse("user:user_register"))

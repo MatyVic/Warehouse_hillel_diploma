@@ -10,13 +10,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-# Create your views here.
-class UserFeedBackView(LoginRequiredMixin, View):
-
-    def get(self, request):
-        return render(request, "user_feedback.html")
-
-
 def user_register(request):
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
@@ -27,7 +20,7 @@ def user_register(request):
             user.groups.add(client_group)
             login(request, user)
             logger.info("New user registered: %s", user.username)
-            return redirect("shop:all_books")
+            return redirect("warehouse:list")
         else:
             logger.warning("Invalid registration attempt: %s", register_form.errors)
             return render(
@@ -45,7 +38,7 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("shop:all_books")
+                return redirect("warehouse:list")
             else:
                 error = "Invalid login details"
                 return render(
