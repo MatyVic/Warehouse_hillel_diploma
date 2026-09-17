@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get(
     "django-insecure-4bn&sa=z2b##e#i=yep!8$pyq1hshbfc27j2bcg%i!fw-+a&mj",
 )
 
-ALLOWED_HOSTS = ["testserver","localhost", "127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = ["testserver", "localhost", "127.0.0.1", "0.0.0.0"]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",

@@ -18,21 +18,25 @@ class TestCustomUserModel:
 @pytest.mark.django_db
 class TestRegisterForm:
     def test_valid_data_creates_user(self):
-        form = RegisterForm(data={
-            "username": "newuser",
-            "email": "new@example.com",
-            "password1": "SuperSecret123",
-            "password2": "SuperSecret123",
-        })
+        form = RegisterForm(
+            data={
+                "username": "newuser",
+                "email": "new@example.com",
+                "password1": "SuperSecret123",
+                "password2": "SuperSecret123",
+            }
+        )
         assert form.is_valid(), form.errors
 
     def test_passwords_must_match(self):
-        form = RegisterForm(data={
-            "username": "newuser",
-            "email": "new@example.com",
-            "password1": "SuperSecret123",
-            "password2": "DifferentPass456",
-        })
+        form = RegisterForm(
+            data={
+                "username": "newuser",
+                "email": "new@example.com",
+                "password1": "SuperSecret123",
+                "password2": "DifferentPass456",
+            }
+        )
         assert not form.is_valid()
 
 
@@ -57,10 +61,13 @@ class TestAuthViews:
 
     @pytest.mark.xfail(reason="redirect target 'shop:all_books' does not exist yet")
     def test_successful_registration_redirects(self, client):
-        response = client.post(reverse("user:user_register"), {
-            "username": "freshuser",
-            "email": "fresh@example.com",
-            "password1": "SuperSecret123",
-            "password2": "SuperSecret123",
-        })
+        response = client.post(
+            reverse("user:user_register"),
+            {
+                "username": "freshuser",
+                "email": "fresh@example.com",
+                "password1": "SuperSecret123",
+                "password2": "SuperSecret123",
+            },
+        )
         assert response.status_code == 302

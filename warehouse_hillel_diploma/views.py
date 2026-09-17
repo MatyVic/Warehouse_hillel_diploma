@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 def index(request):
     return redirect("/warehouse/")
 
+
 def health_check(request):
 
     checks = {"database": "ok", "cache": "ok"}

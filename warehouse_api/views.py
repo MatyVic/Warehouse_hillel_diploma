@@ -10,7 +10,8 @@ from warehouse.models import Book, Stock
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = "__all__"
+
 
 class BooksLimitOffsetPagination(PageNumberPagination):
     page_size = 50
@@ -21,7 +22,7 @@ class BooksLimitOffsetPagination(PageNumberPagination):
 class StockSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stock
-        fields = '__all__'
+        fields = "__all__"
 
 
 class StockLimitOffsetPagination(PageNumberPagination):
@@ -51,9 +52,9 @@ class StockViewSet(viewsets.ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
     filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["book", "warehouse", "book__isbn"]
     pagination_class = StockLimitOffsetPagination
     permission_classes = [IsAuthenticatedOrReadOnly]
-
 
     class Meta:
         model = Stock
