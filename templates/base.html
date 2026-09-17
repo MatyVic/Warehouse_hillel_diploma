@@ -35,7 +35,22 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item me-3">
+                    <form action="{% url 'set_language' %}" method="post" class="d-flex">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" name="language" value="uk"
+                                class="btn btn-sm {% if LANGUAGE_CODE == 'uk' %}btn-light{% else %}btn-outline-light{% endif %} me-1">
+                            UK
+                        </button>
+                        <button type="submit" name="language" value="en"
+                                class="btn btn-sm {% if LANGUAGE_CODE == 'en' %}btn-light{% else %}btn-outline-light{% endif %}">
+                            EN
+                        </button>
+                    </form>
+                </li>
+
                 {% if user.is_authenticated %}
                     <li class="nav-item d-flex align-items-center me-3">
                         <span class="navbar-text text-light">
