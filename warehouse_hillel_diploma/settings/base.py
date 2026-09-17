@@ -346,5 +346,5 @@ if SENTRY_DSN:
         send_default_pii=False,
     )
 
-
+SHOP_SERVICE_URL = os.environ.get("SHOP_SERVICE_URL", "http://localhost:8000")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
