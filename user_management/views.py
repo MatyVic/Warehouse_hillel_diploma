@@ -67,4 +67,4 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect("shop:all_books")
+    return redirect("warehouse:list")
