@@ -1,8 +1,10 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+
 from .views import StockViewSet,BookViewSet
 
-app_name = "warehouse_api"
-urlpatterns = [
-    path("stock", StockViewSet.as_view(), name="stocks"),
-    path("book", BookViewSet.as_view(), name="books"),
-]
+router = DefaultRouter()
+router.register("books", BookViewSet)
+router.register("stock", StockViewSet)
+
+urlpatterns = router.urls
