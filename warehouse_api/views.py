@@ -51,3 +51,15 @@ class StockViewSet(viewsets.ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
     filter_backends = [DjangoFilterBackend]
+    pagination_class = StockLimitOffsetPagination
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+    class Meta:
+        model = Stock
+        fields = "__all__"
+
+    def get_permissions(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return [IsAdminUser()]
+        return [permissions.AllowAny()]
