@@ -1,5 +1,4 @@
 import random
-import string
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -25,7 +24,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=100, verbose_name=_("Publisher"))
     published_year = models.IntegerField(verbose_name=_("Published year"))
     isbn = models.CharField(
-        max_length=20, unique=True, blank=True, null=True, verbose_name=_("ISBN")
+        max_length=20, unique=True, blank=True, verbose_name=_("ISBN")
     )
 
     class Meta:
