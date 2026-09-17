@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-17 11:35+0300\n"
+"POT-Creation-Date: 2026-09-17 21:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,16 +20,17 @@ msgstr ""
 "11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
-#: .\templates\base.html:7 .\warehouse\models.py:11 .\warehouse\models.py:38
+
+#: .\templates\base.html:7 .\warehouse\models.py:13 .\warehouse\models.py:61
 msgid "Warehouse"
 msgstr "Склад"
 
-#: .\templates\base.html:7 .\templates\base.html:21 .\templates\base.html:83
+#: .\templates\base.html:7 .\templates\base.html:21 .\templates\base.html:98
 msgid "Warehouse Service"
 msgstr "Складська служба"
 
 #: .\templates\base.html:28 .\templates\warehouse\warehouse_list.html:4
-#: .\templates\warehouse\warehouse_list.html:8 .\warehouse\models.py:12
+#: .\templates\warehouse\warehouse_list.html:8 .\warehouse\models.py:14
 msgid "Warehouses"
 msgstr "Склади"
 
@@ -41,30 +42,30 @@ msgstr "API Документація"
 msgid "Admin"
 msgstr "Адміністрування"
 
-#: .\templates\base.html:42
+#: .\templates\base.html:57
 #, python-format
 msgid "Hi, %(username)s"
 msgstr "Привіт , %(username)"
 
-#: .\templates\base.html:47
+#: .\templates\base.html:62
 msgid "Logout"
 msgstr "Логаут"
 
-#: .\templates\base.html:53 .\templates\login.html:3 .\templates\login.html:11
+#: .\templates\base.html:68 .\templates\login.html:3 .\templates\login.html:11
 #: .\user_management\forms.py:19
 msgid "Login"
 msgstr "Логін"
 
-#: .\templates\base.html:58 .\templates\register.html:3
+#: .\templates\base.html:73 .\templates\register.html:3
 #: .\templates\register.html:20
 msgid "Register"
 msgstr "Реєстрація"
 
-#: .\templates\warehouse\warehouse_list.html:14 .\warehouse\models.py:6
+#: .\templates\warehouse\warehouse_list.html:14 .\warehouse\models.py:8
 msgid "Name"
 msgstr "Ім'я"
 
-#: .\templates\warehouse\warehouse_list.html:15 .\warehouse\models.py:7
+#: .\templates\warehouse\warehouse_list.html:15 .\warehouse\models.py:9
 msgid "Address"
 msgstr "Адреса"
 
@@ -100,19 +101,19 @@ msgstr "Завантажити CVS"
 msgid "Back to warehouses"
 msgstr "Назад до складів"
 
-#: .\templates\warehouse\warehouse_stock.html:27 .\warehouse\models.py:19
+#: .\templates\warehouse\warehouse_stock.html:27 .\warehouse\models.py:21
 msgid "Title"
 msgstr "Назва"
 
-#: .\templates\warehouse\warehouse_stock.html:28 .\warehouse\models.py:20
+#: .\templates\warehouse\warehouse_stock.html:28 .\warehouse\models.py:22
 msgid "Authors"
 msgstr "Автори"
 
-#: .\templates\warehouse\warehouse_stock.html:29 .\warehouse\models.py:21
+#: .\templates\warehouse\warehouse_stock.html:29 .\warehouse\models.py:23
 msgid "Category"
 msgstr "Категорії"
 
-#: .\templates\warehouse\warehouse_stock.html:30 .\warehouse\models.py:46
+#: .\templates\warehouse\warehouse_stock.html:30 .\warehouse\models.py:69
 msgid "Quantity"
 msgstr "Кількість"
 
@@ -148,30 +149,34 @@ msgstr "Книжки в наявності"
 msgid "Total quantity"
 msgstr "Загальна кількість"
 
-#: .\warehouse\models.py:8
+#: .\warehouse\models.py:10
 msgid "Is active"
 msgstr "Активний"
 
-#: .\warehouse\models.py:22
+#: .\warehouse\models.py:24
 msgid "Publisher"
 msgstr "Видавець"
 
-#: .\warehouse\models.py:23
+#: .\warehouse\models.py:25
 msgid "Published year"
 msgstr "Рік публікації"
 
-#: .\warehouse\models.py:26 .\warehouse\models.py:44
+#: .\warehouse\models.py:27
+msgid "ISBN"
+msgstr "Внутрішній ідентифікатор книги"
+
+#: .\warehouse\models.py:31 .\warehouse\models.py:67
 msgid "Book"
 msgstr "Книга"
 
-#: .\warehouse\models.py:27
+#: .\warehouse\models.py:32
 msgid "Books"
 msgstr "Книги"
 
-#: .\warehouse\models.py:49
+#: .\warehouse\models.py:72
 msgid "Stock item"
 msgstr "Товар у наявності"
 
-#: .\warehouse\models.py:50
+#: .\warehouse\models.py:73
 msgid "Stock items"
 msgstr "Товари у наявності"
