@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from django.db import transaction
 from django.db.models import Sum
-from rest_framework.throttling import UserRateThrottle
+
 
 from warehouse.models import Book, Stock
 

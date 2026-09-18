@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate, logout, login
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
-from django.views import View
 from user_management.forms import RegisterForm, LoginForm
 from warehouse_hillel_diploma.tasks import reg_mail_sender
 import logging

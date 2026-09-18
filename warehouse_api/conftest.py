@@ -1,19 +1,18 @@
 import os
-
-os.environ.setdefault(
-    "DJANGO_SETTINGS_MODULE", "warehouse_hillel_diploma.settings.development"
-)
-
 import django
-
-django.setup()
-
 import factory
 import pytest
 from rest_framework.test import APIClient
 
 from user_management.models import CustomUser
 from warehouse.models import Book, Stock, Warehouse
+
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE", "warehouse_hillel_diploma.settings.development"
+)
+
+
+django.setup()
 
 
 class UserFactory(factory.django.DjangoModelFactory):
