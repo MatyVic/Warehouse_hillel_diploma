@@ -1,7 +1,7 @@
 import pytest
 from django.db import IntegrityError
 
-from warehouse.models import Book, Stock, Warehouse
+from warehouse.models import Stock, Warehouse
 
 
 @pytest.mark.django_db

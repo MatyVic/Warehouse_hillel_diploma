@@ -1,10 +1,9 @@
 import csv
-from multiprocessing import context
 
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 
-from .models import Warehouse, Stock
+from .models import Stock
 
 from warehouse.models import Warehouse
 
