@@ -8,7 +8,7 @@ on:
 
 env:
   PYTHON_VERSION: "3.12"
-  DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/bookstorehw
+  DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/warehouse-hillel-diploma
 
 jobs:
   lint:
@@ -37,42 +37,47 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
 
+    # Ті самі сервіси, що й у docker-compose.yml (db, redis_cache),
+    # тільки на стандартних портах контейнера - назовні для job'и це
+    # localhost:5432 / localhost:6379.
     services:
       postgres:
-        image: postgres:16
+        image: postgres:16-alpine
         env:
-          POSTGRES_DB: test_db
-          POSTGRES_USER: test_user
-          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: db
+          POSTGRES_USER: my_user
+          POSTGRES_PASSWORD: my_secretpass_word
         ports:
           - 5432:5432
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
+          --health-cmd "pg_isready -U my_user -d db"
+          --health-interval 5s
           --health-timeout 5s
           --health-retries 5
 
       redis:
-        image: redis:7
+        image: redis:7.2-alpine
         ports:
           - 6379:6379
         options: >-
           --health-cmd "redis-cli ping"
-          --health-interval 10s
+          --health-interval 5s
           --health-timeout 5s
           --health-retries 5
 
     env:
-      DJANGO_SETTINGS_MODULE: bookstoreHW.settings.development
+      # TODO: уточніть реальний DJANGO_SETTINGS_MODULE вашого проєкту
+      DJANGO_SETTINGS_MODULE: warehouse_hillel_diploma.settings
       DJANGO_SECRET_KEY: ci-test-secret-key-not-for-production
-      DB_NAME: test_db
-      DB_USER: test_user
-      DB_PASSWORD: test_password
+      DB_NAME: db
+      DB_USER: my_user
+      DB_PASSWORD: my_secretpass_word
       DB_HOST: localhost
       DB_PORT: 5432
       REDIS_HOST: localhost
       REDIS_PORT: 6379
-      STRIPE_SECRET_KEY: sk_test_ci_placeholder
+      CELERY_BROKER_URL: redis://localhost:6379/0
+      SHOP_SERVICE_URL: http://localhost:8000
 
     steps:
       - uses: actions/checkout@v4
@@ -93,7 +98,10 @@ jobs:
         run: python manage.py migrate --noinput
 
       - name: Run tests with coverage
-        run: pytest --cov=. --cov-report=xml --cov-report=term-missing
+        run: |
+          python -m pytest -o python_files="tests.py test_*.py" \
+            --cov=warehouse --cov=warehouse_api --cov=user_management \
+            --cov-report=xml --cov-report=term-missing
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -105,9 +113,8 @@ jobs:
     name: Build & push Docker image
     needs: [lint, test]
     runs-on: ubuntu-latest
-    # Only publish an image on an actual push to main/master, not on every
-    # PR - forks / PRs from outside the repo don't have access to the
-    # DOCKERHUB_* secrets anyway.
+    # Пушимо образ тільки при push у main/master, не на кожен PR -
+    # форки й чужі PR не мають доступу до DOCKERHUB_* секретів.
     if: github.event_name == 'push'
 
     steps:
@@ -126,6 +133,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: ./Dockerfile
           push: true
           tags: |
             ${{ env.DOCKER_IMAGE }}:latest
