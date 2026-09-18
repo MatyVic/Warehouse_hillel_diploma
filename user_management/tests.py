@@ -59,7 +59,6 @@ class TestAuthViews:
         response = client.get(reverse("user:user_login"))
         assert response.status_code == 200
 
-    @pytest.mark.xfail(reason="redirect target 'shop:all_books' does not exist yet")
     def test_successful_registration_redirects(self, client):
         response = client.post(
             reverse("user:user_register"),
