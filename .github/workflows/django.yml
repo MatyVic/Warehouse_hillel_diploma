@@ -48,7 +48,7 @@ jobs:
           POSTGRES_USER: my_user
           POSTGRES_PASSWORD: my_secretpass_word
         ports:
-          - 5432:5432
+          - 5433:5432
         options: >-
           --health-cmd "pg_isready -U my_user -d db"
           --health-interval 5s
@@ -58,7 +58,7 @@ jobs:
       redis:
         image: redis:7.2-alpine
         ports:
-          - 6379:6379
+          - 6380:6379
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 5s
@@ -66,17 +66,16 @@ jobs:
           --health-retries 5
 
     env:
-      # TODO: уточніть реальний DJANGO_SETTINGS_MODULE вашого проєкту
-      DJANGO_SETTINGS_MODULE: warehouse_hillel_diploma.settings
+      DJANGO_SETTINGS_MODULE: warehouse_hillel_diploma.settings.development
       DJANGO_SECRET_KEY: ci-test-secret-key-not-for-production
       DB_NAME: db
       DB_USER: my_user
       DB_PASSWORD: my_secretpass_word
       DB_HOST: localhost
-      DB_PORT: 5432
+      DB_PORT: 5433
       REDIS_HOST: localhost
-      REDIS_PORT: 6379
-      CELERY_BROKER_URL: redis://localhost:6379/0
+      REDIS_PORT: 6380
+      CELERY_BROKER_URL: redis://localhost:6380/0
       SHOP_SERVICE_URL: http://localhost:8000
 
     steps:
